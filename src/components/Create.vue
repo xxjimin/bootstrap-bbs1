@@ -7,7 +7,7 @@
             rows="3"
             max-rows="6">
         </b-form-textarea>
-        <b-button @click="uploadContent">저장</b-button>
+        <b-button @click="updateMode ? updateContent() : uploadContent()">저장</b-button>
         <b-button @click="cancel">취소</b-button>
     </div>
 </template>
@@ -21,16 +21,22 @@ export default {
             context: '',
             user_id: 1,
             created_at: '2024-02-19 14:43:32',
-            updated_at: null
+            updated_at: null,
+            updateObject: null,
+            updateMode: this.$route.params.contentId > 0 ? true : false
         }
     },
-    
+
+    created(){
+        if(this.$route.params.contentId>0){
+            const contentId = Number(this.$route.params.contentId)
+            this.updateObject = data.Content.filter(item => item.content_id === contentId)[0]
+            this.subject = this.updateObject.title;
+            this.context = this.updateObject.context;
+        }
+    }
+    ,
     methods: {
-        cancel(){
-            this.$router.push({
-                path: '/board/free/'
-            })
-        },
 
         uploadContent(){
 
@@ -42,14 +48,28 @@ export default {
                 title: this.subject,
                 context: this.context,
                 created_at: this.created_at,
-                updated_at: this.updated_at
+                updated_at: null
             })
 
             this.$router.push({
                 path: '/board/free/'
             })
 
-        }
+        },
+
+        updateContent(){
+            this.updateObject.title = this.subject;
+            this.updateObject.context = this.context;
+            this.$router.push({
+                path: '/board/free/'
+            })
+        },
+
+        cancel(){
+            this.$router.push({
+                path: '/board/free/'
+            })
+        },
     },
 }
 </script>
