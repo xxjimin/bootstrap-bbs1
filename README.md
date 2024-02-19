@@ -1,6 +1,6 @@
 # firstapp_bs
 
-> A Vue.js project
+> A Vue.js project 로 게시판을 만들어 보았습니다.
 
 ## Build Setup
 
