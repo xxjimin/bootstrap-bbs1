@@ -5,7 +5,7 @@
 
                 <div class="content-detail_content-info-left">
                     <div class="content-detail_content-info-left-number">
-                        {{contentID}}
+                        {{contentId}}
                     </div>
                     <div class="content-detail_content-info-left-subject">
                         {{title}}
@@ -44,10 +44,10 @@ import data from '@/components/data/index';
 export default {
     name: 'ContentDetail',
     data(){
-        const contentID = Number(this.$route.params.contentId);
-        const contentData = data.Content.filter(item=>item.content_id === contentID)[0]
+        const contentId = Number(this.$route.params.contentId);
+        const contentData = data.Content.filter(item=>item.content_id === contentId)[0]
         return {
-            contentID: contentID,
+            contentId: contentId,
             title: contentData.title,
             context: contentData.context,
             user: data.User.filter(item => item.user_id === contentData.user_id)[0].name,
@@ -60,8 +60,8 @@ export default {
             const content_index = data.Content.findIndex(item => item.content_id === this.contentId);
             data.Content.splice(content_index,1) //이게 왜 삭제?
             this.$router.push({
-                path: '/board/free'
-            })
+        path: '/board/free'
+      })
         }
     }
     
