@@ -33,7 +33,7 @@
             </div>
 
             <div class="content-detail-comment">
-                댓글
+                <CommentList :contentId="contentId"/> 
             </div>
         </b-card>
     </div>
@@ -41,8 +41,14 @@
 
 <script>
 import data from '@/components/data/index';
+import CommentList from '@/components/CommentList'
+
 export default {
     name: 'ContentDetail',
+    components: {
+        CommentList
+    },
+     
     data(){
         const contentId = Number(this.$route.params.contentId);
         const contentData = data.Content.filter(item=>item.content_id === contentId)[0]

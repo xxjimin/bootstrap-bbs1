@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Board from '@/components/Board'
 import ContentDetail from '@/components/ContentDetail'
 import Create from '@/components/Create'
+import CommentList from '@/components/CommentList'
 Vue.use(Router)
 
 export default new Router({
